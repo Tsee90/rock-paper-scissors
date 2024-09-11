@@ -1,9 +1,12 @@
+let humanScore = 0;
+let computerScore = 1;
+
 //Returns Rock, Paper, or Scissors chosen randomly
 function getComputerChoice() {
     randomNum = 0;
     //While loop removes 0 as an option leaving all three choices with equal odds 1-33, 34-66, and 67-99 respectively
     while (randomNum === 0) {
-        randomNum = Math.floor(Math.random() * 100);
+        randomNum = Math.floor(Math.random() * 100)
     }
     switch(true){
         case randomNum <= 33:
