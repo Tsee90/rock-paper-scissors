@@ -29,15 +29,15 @@ function playRound(humanChoice, computerChoice) {
     if (humanChoice === "Rock") {
         switch(true) {
             case computerChoice === "Rock":
-                console.log("Tie! No points awarded.\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Tie! No points awarded.\n" + getScores());
                 break;
             case computerChoice === "Paper":
                 computerScore++;
-                console.log("Computer wins round!\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Computer wins round!\n" + getScores());
                 break;
             case computerChoice === "Scissors":
                 humanScore++;
-                console.log("Human wins round!\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Human wins round!\n" + getScores());
                 break;
             default:
                 console.log("Something has gone terribly wrong!");
@@ -48,14 +48,14 @@ function playRound(humanChoice, computerChoice) {
         switch(true) {
             case computerChoice === "Rock":
                 humanScore++;
-                console.log("Human wins round!\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Human wins round!\n" + getScores());
                 break;
             case computerChoice === "Paper":
-                console.log("Tie! No points awarded.\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Tie! No points awarded.\n" + getScores());
                 break;
             case computerChoice === "Scissors":
                 computerScore++;
-                console.log("Computer wins round!\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Computer wins round!\n" + getScores());
                 break;
             default:
                 console.log("Something has gone terribly wrong!");
@@ -66,11 +66,11 @@ function playRound(humanChoice, computerChoice) {
         switch(true) {
             case computerChoice === "Rock":
                 computerScore++;
-                console.log("Computer wins round!\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Computer wins round!\n" + getScores());
                 break;
             case computerChoice === "Paper":
                 humanScore++;
-                console.log("Human wins round!\nComputer Score: " + computerScore + "\nHuman Score: " + humanScore);
+                console.log("Human wins round!\n" + getScores());
                 break;
             case computerChoice === "Scissors":
                 console.log("Tie! No points awarded.\nComputer Score: " + computerScore + "\nHuman Score: " +  humanScore);
@@ -83,4 +83,9 @@ function playRound(humanChoice, computerChoice) {
     }else {
         console.log("Error in human selection. Please type Rock, Paper, or Scissors.")
     }
+}
+
+//Returns string with current scores
+function getScores() {
+    return "Computer Score: " + computerScore + "\nHuman Score: " + humanScore;
 }
