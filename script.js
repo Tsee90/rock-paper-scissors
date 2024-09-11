@@ -1,5 +1,5 @@
 let humanScore = 0;
-let computerScore = 1;
+let computerScore = 0;
 
 //Returns Rock, Paper, or Scissors chosen randomly
 function getComputerChoice() {
