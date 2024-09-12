@@ -1,14 +1,16 @@
 
 function playGame(){
+
     let humanScore = 0;
     let computerScore = 0;
     let round = 1;
 
-    //Plays five round and determines the outcome
+    //Plays five rounds
     while (round < 6){
         playRound(getHumanChoice(), getComputerChoice());
         round++;
     }
+    //Calculate outcome
     if (humanScore > computerScore){
         console.log("GAME OVER, YOU WIN!\n" + getScores());
     }else if (humanScore < computerScore) {
@@ -45,11 +47,11 @@ function playGame(){
     //User inputs Rock, Paper, or Scissors
     function getHumanChoice(){
         input = prompt("Round " + round + " of 5: Rock, Paper, or Scissors?");
-        input = input[0].toUpperCase() + input.slice(1);
+        input = input[0].toUpperCase() + input.slice(1).toLowerCase();
         
         while (input !== "Rock" && input !== "Paper" && input !== "Scissors") {
             input = prompt("You Imbecile! Type: Rock, Paper, or Scissors.")
-            input = input[0].toUpperCase() + input.slice(1);    
+            input = input[0].toUpperCase() + input.slice(1).toLowerCase();    
             if (input === "Rock" || input === "Paper" || input === "Scissors"){
                     break;
             }        
