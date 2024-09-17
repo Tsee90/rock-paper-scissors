@@ -2,22 +2,6 @@ let humanScore = 0;
 let computerScore = 0;
 let round = 1;
 
-/*Plays five rounds
-while (round < 6){
-    playRound(getHumanChoice(), getComputerChoice());
-    round++;
-}
-//Calculate outcome
-if (humanScore > computerScore){
-    console.log("GAME OVER, YOU WIN!\n" + getScores());
-}else if (humanScore < computerScore) {
-    console.log("GAME OVER, YOU LOSE!\n" + getScores());
-}else if (humanScore === computerScore) {
-    console.log("GAME OVER, TIE!\n" + getScores());
-}else {
-    console.log("Something is not right here...");
-}
-*/
 //Returns Rock, Paper, or Scissors chosen randomly
 function getComputerChoice() {
     randomNum = 0;
@@ -36,26 +20,9 @@ function getComputerChoice() {
             return "Scissors";
             break;
         default:
-            console.log("Error in selection!")
+            scoreCont.innerText = "Error in selection!"
             break;
     }
-}
-
-//User inputs Rock, Paper, or Scissors
-function getHumanChoice(){
-    input = prompt("Round " + round + " of 5: Rock, Paper, or Scissors?");
-    input = input[0].toUpperCase() + input.slice(1).toLowerCase();
-    
-    while (input !== "Rock" && input !== "Paper" && input !== "Scissors") {
-        input = prompt("You Imbecile! Type: Rock, Paper, or Scissors.")
-        input = input[0].toUpperCase() + input.slice(1).toLowerCase();    
-        if (input === "Rock" || input === "Paper" || input === "Scissors"){
-                break;
-        }        
-    }
-        
-    
-    return input;
 }
 
 //Determines the winner of round and displays updated scores
@@ -63,18 +30,18 @@ function playRound(humanChoice, computerChoice) {
     if (humanChoice === "Rock") {
         switch(true) {
             case computerChoice === "Rock":
-                console.log("Tie! No points awarded for round " + round + ".\n" + getScores());
+                scoreCont.innerText = "Tie! No points awarded for round " + round + ".\n" + getScores();
                 break;
             case computerChoice === "Paper":
                 computerScore++;
-                console.log("Computer wins round " + round + "!\n" + getScores());
+                scoreCont.innerText = "Computer wins round " + round + "!\n" + getScores();
                 break;
             case computerChoice === "Scissors":
                 humanScore++;
-                console.log("Human wins round " + round + "!\n" + getScores());
+                scoreCont.innerText = "Human wins round " + round + "!\n" + getScores();
                 break;
             default:
-                console.log("Something has gone terribly wrong!");
+                scoreCont.innerText = "Something has gone terribly wrong!";
                 break;
 
         }
@@ -82,17 +49,17 @@ function playRound(humanChoice, computerChoice) {
         switch(true) {
             case computerChoice === "Rock":
                 humanScore++;
-                console.log("Human wins round " + round + "!\n" + getScores());
+                scoreCont.innerText = "Human wins round " + round + "!\n" + getScores();
                 break;
             case computerChoice === "Paper":
-                console.log("Tie! No points awarded for round " + round + ".\n" + getScores());
+                scoreCont.innerText = "Tie! No points awarded for round " + round + ".\n" + getScores();
                 break;
             case computerChoice === "Scissors":
                 computerScore++;
-                console.log("Computer wins round " + round + "!\n" + getScores());
+                scoreCont.innerText = "Computer wins round " + round + "!\n" + getScores();
                 break;
             default:
-                console.log("Something has gone terribly wrong!");
+                scoreCont.innerText = "Something has gone terribly wrong!";
                 break;
 
         }
@@ -100,22 +67,31 @@ function playRound(humanChoice, computerChoice) {
         switch(true) {
             case computerChoice === "Rock":
                 computerScore++;
-                console.log("Computer wins round " + round + "!\n" + getScores());
+                scoreCont.innerText = "Computer wins round " + round + "!\n" + getScores();
                 break;
             case computerChoice === "Paper":
                 humanScore++;
-                console.log("Human wins round " + round + "!\n" + getScores());
+                scoreCont.innerText = "Human wins round " + round + "!\n" + getScores();
                 break;
             case computerChoice === "Scissors":
-                console.log("Tie! No points awarded for round " + round + ".\nComputer Score: " + computerScore + "\nHuman Score: " +  humanScore);
+                scoreCont.innerText = "Tie! No points awarded for round " + round + ".\nComputer Score: " + computerScore + "\nHuman Score: " +  humanScore;
                 break; 
             default:
-                console.log("Something has gone terribly wrong!");
+                scoreCont.innerText = "Something has gone terribly wrong!";
                 break;
 
         }
     }else {
-        console.log("Error in human selection. Please type Rock, Paper, or Scissors.");
+        scoreCont.innerText = "Error in human selection. Please type Rock, Paper, or Scissors.";
+    }
+    round++;
+
+    if(humanScore >= 5){
+        scoreCont.innerText = "HUMAN WINS!\nGame resetting..."
+        setTimeout(reset, 3000);
+    }else if(computerScore >= 5){
+        scoreCont.innerText = "COMPUTER WINS!\nGame resetting..."
+        setTimeout(reset, 3000);
     }
 }
 
@@ -124,7 +100,15 @@ function getScores() {
     return "Computer Score: " + computerScore + "\nHuman Score: " + humanScore;
 }
 
-const btn = document.querySelector("#btn");
-btn.addEventListener("click", () => {
-  alert("Hello World");
-});
+function reset(){
+    humanScore = 0;
+    computerScore = 0;
+    round = 1;
+    scoreCont.innerText = getScores();
+}
+
+const btn = document.querySelectorAll('button');
+btn.forEach(x => x.addEventListener('click', (e) => playRound(e.target.textContent, getComputerChoice())));
+
+const scoreCont = document.querySelector('.scores');
+scoreCont.innerText = getScores();
